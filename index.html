@@ -37,6 +37,7 @@
 
     h1 .word {
       display: inline-block;
+      display: none;
       width: 0;
       overflow: hidden;
     }
@@ -54,15 +55,15 @@
     }
 
     h1 .word:nth-of-type(4) {
-      animation: showWord .1s ease-in 2.4s forwards;
+      animation: showWord .1s ease-in 2.2s forwards;
     }
 
     h1 .word:nth-of-type(5) {
-      animation: showWord .1s ease-in 2.7s forwards;
+      animation: showWord .1s ease-in 2.3s forwards;
     }
 
     h1 .word:nth-of-type(6) {
-      animation: showWord .1s ease-in 3s forwards;
+      animation: showWord .1s ease-in 2.4s forwards;
     }
 
     h1 .line {
@@ -88,7 +89,7 @@
       }
 
       to {
-        background: #ffffff;
+        background: #000000;
       }
     }
 
@@ -136,12 +137,27 @@
   <script src="./js/three.min.js"></script>
   <script src="./js/vanta.halo.min.js"></script>
   <script>
-    if (window.VANTA) window.VANTA.HALO({
-      el: "#app",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-    })
+    window.onload = () => {
+      document.querySelectorAll('.word').forEach(el => el.style.display = 'inline-block')
+      const keyframes = `
+        @keyframes fadeLine {
+          from {
+            background: transparent;
+          }
+          to {
+            background: #ffffff;
+          }
+        }
+      `
+      document.querySelector('style').append(keyframes)
+
+      if (window.VANTA) window.VANTA.HALO({
+        el: "#app",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+      })
+    }
   </script>
 </body>
 
